@@ -7,9 +7,11 @@
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
     <!-- Bootstrap CSS -->
     <link rel="stylesheet" href="css/bootstrap.css">
-	<!-- Form CSS -->
-	<link rel="stylesheet" href="css/form.css">
-	<title>Bloc</title>
+    <!-- Form CSS -->
+    <link rel="stylesheet" href="css/form.css">
+    <!-- Favicon-->
+    <link rel="shortcut icon" href="#">
+    <title>Bloc</title>
 </head>
 
 <body>
@@ -26,7 +28,7 @@
                     <a class="nav-link" href="#">HOME <span class="sr-only">(current)</span></a>
                 </li>
                 <li class="nav-item active mx-3">
-                    <a class="nav-link" href="#">LOGIN</a>
+                    <a class="nav-link" href="#" data-toggle="modal" data-target="#loginModal">LOGIN</a>
                 </li>
                 <li class="nav-item active mx-3">
                     <a class="nav-link" href="#team">TEAM</a>
@@ -37,96 +39,144 @@
     <!-- #Navigation Bar -->
 
     <div class="jumbotron">
-        
-			<form class="form-signin float-right" _lpchecked="1">	
-				<div class="form-label-group">
-				  <input type="email" id="inputEmail" class="form-control" placeholder="Email address" required=""
-					autofocus="" autocomplete="off"
-					style="background-image: url(&quot;data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABAAAAASCAYAAABSO15qAAAAAXNSR0IArs4c6QAAAPhJREFUOBHlU70KgzAQPlMhEvoQTg6OPoOjT+JWOnRqkUKHgqWP4OQbOPokTk6OTkVULNSLVc62oJmbIdzd95NcuGjX2/3YVI/Ts+t0WLE2ut5xsQ0O+90F6UxFjAI8qNcEGONia08e6MNONYwCS7EQAizLmtGUDEzTBNd1fxsYhjEBnHPQNG3KKTYV34F8ec/zwHEciOMYyrIE3/ehKAqIoggo9inGXKmFXwbyBkmSQJqmUNe15IRhCG3byphitm1/eUzDM4qR0TTNjEixGdAnSi3keS5vSk2UDKqqgizLqB4YzvassiKhGtZ/jDMtLOnHz7TE+yf8BaDZXA509yeBAAAAAElFTkSuQmCC&quot;); background-repeat: no-repeat; background-attachment: scroll; background-size: 16px 18px; background-position: 98% 50%; cursor: pointer;">
-				  <label for="inputEmail">Email address</label>
-				</div>
-	
-				<div class="form-label-group">
-				  <input type="password" id="inputPassword" class="form-control" placeholder="Password" required=""
-					autocomplete="off"
-					style="background-image: url(&quot;data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABAAAAASCAYAAABSO15qAAAAAXNSR0IArs4c6QAAAPhJREFUOBHlU70KgzAQPlMhEvoQTg6OPoOjT+JWOnRqkUKHgqWP4OQbOPokTk6OTkVULNSLVc62oJmbIdzd95NcuGjX2/3YVI/Ts+t0WLE2ut5xsQ0O+90F6UxFjAI8qNcEGONia08e6MNONYwCS7EQAizLmtGUDEzTBNd1fxsYhjEBnHPQNG3KKTYV34F8ec/zwHEciOMYyrIE3/ehKAqIoggo9inGXKmFXwbyBkmSQJqmUNe15IRhCG3byphitm1/eUzDM4qR0TTNjEixGdAnSi3keS5vSk2UDKqqgizLqB4YzvassiKhGtZ/jDMtLOnHz7TE+yf8BaDZXA509yeBAAAAAElFTkSuQmCC&quot;); background-repeat: no-repeat; background-attachment: scroll; background-size: 16px 18px; background-position: 98% 50%; cursor: auto;">
-				  <label for="inputPassword">Password</label>
-				</div>
-	
-				<div class="form-label-group">
-				  <input type="text" id="inputCaptcha" class="form-control" placeholder="Captcha" required=""
-					autocomplete="off"
-					style="background-image: url(&quot;data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABAAAAASCAYAAABSO15qAAAAAXNSR0IArs4c6QAAAPhJREFUOBHlU70KgzAQPlMhEvoQTg6OPoOjT+JWOnRqkUKHgqWP4OQbOPokTk6OTkVULNSLVc62oJmbIdzd95NcuGjX2/3YVI/Ts+t0WLE2ut5xsQ0O+90F6UxFjAI8qNcEGONia08e6MNONYwCS7EQAizLmtGUDEzTBNd1fxsYhjEBnHPQNG3KKTYV34F8ec/zwHEciOMYyrIE3/ehKAqIoggo9inGXKmFXwbyBkmSQJqmUNe15IRhCG3byphitm1/eUzDM4qR0TTNjEixGdAnSi3keS5vSk2UDKqqgizLqB4YzvassiKhGtZ/jDMtLOnHz7TE+yf8BaDZXA509yeBAAAAAElFTkSuQmCC&quot;); background-repeat: no-repeat; background-attachment: scroll; background-size: 16px 18px; background-position: 98% 50%; cursor: auto;">
-				  <label for="inputCaptcha">Captcha</label>
-				</div>
-	
-				<button class="btn btn-lg btn-primary btn-block" type="submit">Sign in</button>
-			</form>
-			<div class="clearfix"></div>
-      </div>
+
+        <form class="form-signin float-right" _lpchecked="1">
+            <div class="form-label-group">
+                <input type="email" id="inputEmail" class="form-control" placeholder="Email address" required=""
+                    autofocus="" autocomplete="off"
+                    style="background-image: url(&quot;data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABAAAAASCAYAAABSO15qAAAAAXNSR0IArs4c6QAAAPhJREFUOBHlU70KgzAQPlMhEvoQTg6OPoOjT+JWOnRqkUKHgqWP4OQbOPokTk6OTkVULNSLVc62oJmbIdzd95NcuGjX2/3YVI/Ts+t0WLE2ut5xsQ0O+90F6UxFjAI8qNcEGONia08e6MNONYwCS7EQAizLmtGUDEzTBNd1fxsYhjEBnHPQNG3KKTYV34F8ec/zwHEciOMYyrIE3/ehKAqIoggo9inGXKmFXwbyBkmSQJqmUNe15IRhCG3byphitm1/eUzDM4qR0TTNjEixGdAnSi3keS5vSk2UDKqqgizLqB4YzvassiKhGtZ/jDMtLOnHz7TE+yf8BaDZXA509yeBAAAAAElFTkSuQmCC&quot;); background-repeat: no-repeat; background-attachment: scroll; background-size: 16px 18px; background-position: 98% 50%; cursor: pointer;">
+                <label for="inputEmail">Email address</label>
+            </div>
+
+            <div class="form-label-group">
+                <input type="password" id="inputPassword" class="form-control" placeholder="Password" required=""
+                    autocomplete="off"
+                    style="background-image: url(&quot;data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABAAAAASCAYAAABSO15qAAAAAXNSR0IArs4c6QAAAPhJREFUOBHlU70KgzAQPlMhEvoQTg6OPoOjT+JWOnRqkUKHgqWP4OQbOPokTk6OTkVULNSLVc62oJmbIdzd95NcuGjX2/3YVI/Ts+t0WLE2ut5xsQ0O+90F6UxFjAI8qNcEGONia08e6MNONYwCS7EQAizLmtGUDEzTBNd1fxsYhjEBnHPQNG3KKTYV34F8ec/zwHEciOMYyrIE3/ehKAqIoggo9inGXKmFXwbyBkmSQJqmUNe15IRhCG3byphitm1/eUzDM4qR0TTNjEixGdAnSi3keS5vSk2UDKqqgizLqB4YzvassiKhGtZ/jDMtLOnHz7TE+yf8BaDZXA509yeBAAAAAElFTkSuQmCC&quot;); background-repeat: no-repeat; background-attachment: scroll; background-size: 16px 18px; background-position: 98% 50%; cursor: auto;">
+                <label for="inputPassword">Password</label>
+            </div>
+
+            <div class="form-label-group">
+                <input type="text" id="inputCaptcha" class="form-control" placeholder="Captcha" required=""
+                    autocomplete="off"
+                    style="background-image: url(&quot;data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABAAAAASCAYAAABSO15qAAAAAXNSR0IArs4c6QAAAPhJREFUOBHlU70KgzAQPlMhEvoQTg6OPoOjT+JWOnRqkUKHgqWP4OQbOPokTk6OTkVULNSLVc62oJmbIdzd95NcuGjX2/3YVI/Ts+t0WLE2ut5xsQ0O+90F6UxFjAI8qNcEGONia08e6MNONYwCS7EQAizLmtGUDEzTBNd1fxsYhjEBnHPQNG3KKTYV34F8ec/zwHEciOMYyrIE3/ehKAqIoggo9inGXKmFXwbyBkmSQJqmUNe15IRhCG3byphitm1/eUzDM4qR0TTNjEixGdAnSi3keS5vSk2UDKqqgizLqB4YzvassiKhGtZ/jDMtLOnHz7TE+yf8BaDZXA509yeBAAAAAElFTkSuQmCC&quot;); background-repeat: no-repeat; background-attachment: scroll; background-size: 16px 18px; background-position: 98% 50%; cursor: auto;">
+                <label for="inputCaptcha">Captcha</label>
+            </div>
+
+            <button class="btn btn-lg btn-primary btn-block" type="submit">Sign in</button>
+        </form>
+        <div class="clearfix"></div>
+    </div>
     <!-- Team -->
     <h2 class="text-center">TEAM</h1>
-    <div id="team" class="container marketing d-flex justify-content-sm-center" style="margin-bottom: 2rem;">
-        <div class="row">
-            <div class="col-lg-4 mb-4">
-                <div class="card">
-                    <div class="card-body mx-auto">
-                        <svg class="bd-placeholder-img rounded-circle mb-4" width="140" height="140"
-                            xmlns="http://www.w3.org/2000/svg" preserveAspectRatio="xMidYMid slice" focusable="false"
-                            role="img" aria-label="Placeholder: 140x140">
-                            <title>Placeholder</title>
-                            <rect width="100%" height="100%" fill="#777"></rect><text x="50%" y="50%" fill="#777"
-                                dy=".3em">140x140</text>
-                        </svg>
-                        <h5 class="card-title px-4">John Doe</h5>
-                        <p class="card-text px-4">Front End Dec.</p>
-                    </div>
-                </div>
-            </div>
-
-            <div class="col-lg-4 mb-4">
-                <div class="card">
-                    <div class="card-body mx-auto">
-                        <svg class="bd-placeholder-img rounded-circle mb-4" width="140" height="140"
-                            xmlns="http://www.w3.org/2000/svg" preserveAspectRatio="xMidYMid slice" focusable="false"
-                            role="img" aria-label="Placeholder: 140x140">
-                            <title>Placeholder</title>
-                            <rect width="100%" height="100%" fill="#777"></rect><text x="50%" y="50%" fill="#777"
-                                dy=".3em">140x140</text>
-                        </svg>
-                        <h5 class="card-title px-4">John Doe</h5>
-                        <p class="card-text px-4">Front End Dec.</p>
+        <div id="team" class="container marketing d-flex justify-content-sm-center" style="margin-bottom: 2rem;">
+            <div class="row">
+                <div class="col-lg-4 mb-4">
+                    <div class="card">
+                        <div class="card-body mx-auto">
+                            <svg class="bd-placeholder-img rounded-circle mb-4" width="140" height="140"
+                                xmlns="http://www.w3.org/2000/svg" preserveAspectRatio="xMidYMid slice"
+                                focusable="false" role="img" aria-label="Placeholder: 140x140">
+                                <title>Placeholder</title>
+                                <rect width="100%" height="100%" fill="#777"></rect><text x="50%" y="50%" fill="#777"
+                                    dy=".3em">140x140</text>
+                            </svg>
+                            <h5 class="card-title px-4">John Doe</h5>
+                            <p class="card-text px-4">Front End Dec.</p>
+                        </div>
                     </div>
                 </div>
 
-            </div>
-
-            <div class="col-lg-4 mb-4">
-                <div class="card">
-                    <div class="card-body mx-auto">
-                        <svg class="bd-placeholder-img rounded-circle mb-4" width="140" height="140"
-                            xmlns="http://www.w3.org/2000/svg" preserveAspectRatio="xMidYMid slice" focusable="false"
-                            role="img" aria-label="Placeholder: 140x140">
-                            <title>Placeholder</title>
-                            <rect width="100%" height="100%" fill="#777"></rect><text x="50%" y="50%" fill="#777"
-                                dy=".3em">140x140</text>
-                        </svg>
-                        <h5 class="card-title px-4">John Doe</h5>
-                        <p class="card-text px-4">Front End Dec.</p>
+                <div class="col-lg-4 mb-4">
+                    <div class="card">
+                        <div class="card-body mx-auto">
+                            <svg class="bd-placeholder-img rounded-circle mb-4" width="140" height="140"
+                                xmlns="http://www.w3.org/2000/svg" preserveAspectRatio="xMidYMid slice"
+                                focusable="false" role="img" aria-label="Placeholder: 140x140">
+                                <title>Placeholder</title>
+                                <rect width="100%" height="100%" fill="#777"></rect><text x="50%" y="50%" fill="#777"
+                                    dy=".3em">140x140</text>
+                            </svg>
+                            <h5 class="card-title px-4">John Doe</h5>
+                            <p class="card-text px-4">Front End Dec.</p>
+                        </div>
                     </div>
+
+                </div>
+
+                <div class="col-lg-4 mb-4">
+                    <div class="card">
+                        <div class="card-body mx-auto">
+                            <svg class="bd-placeholder-img rounded-circle mb-4" width="140" height="140"
+                                xmlns="http://www.w3.org/2000/svg" preserveAspectRatio="xMidYMid slice"
+                                focusable="false" role="img" aria-label="Placeholder: 140x140">
+                                <title>Placeholder</title>
+                                <rect width="100%" height="100%" fill="#777"></rect><text x="50%" y="50%" fill="#777"
+                                    dy=".3em">140x140</text>
+                            </svg>
+                            <h5 class="card-title px-4">John Doe</h5>
+                            <p class="card-text px-4">Front End Dec.</p>
+                        </div>
+                    </div>
+
                 </div>
 
             </div>
-
         </div>
-    </div>
-    <!-- #Team-->
+        <!-- #Team-->
 
-    <!-- Optional JavaScript -->
-    <!-- jQuery first, then Popper.js, then Bootstrap JS -->
-	<script src="js/jquery-3.5.1.slim.js"></script>
-	<script src="js/popper.js"></script>
-	<script src="js/bootstrap.js"></script>	
+        <!-- Login/Register Modal -->
+        <div class="modal fade" id="loginModal" tabindex="-1" role="dialog"
+            aria-labelledby="loginModalLabel" aria-hidden="true">
+            <div class="modal-dialog" role="document">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <h5 class="modal-title" id="loginModalLabel">Login</h5>
+                        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                            <span aria-hidden="true">&times;</span>
+                        </button>
+                    </div>
+                    <div class="modal-body">
+                        <form class="form-signin" _lpchecked="1">
+                            <div class="text-center mb-4">
+                                <img class="mb-4" src="" alt="" width="72"
+                                    height="72">
+                                <h1 class="h3 mb-3 font-weight-normal">BLOC</h1>
+                            </div>
+
+                            <div class="form-label-group">
+                                <input type="email" id="inputEmail" class="form-control" placeholder="Email address"
+                                    required="" autofocus="" autocomplete="off"
+                                    style="background-image: url(&quot;data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABAAAAASCAYAAABSO15qAAAAAXNSR0IArs4c6QAAAPhJREFUOBHlU70KgzAQPlMhEvoQTg6OPoOjT+JWOnRqkUKHgqWP4OQbOPokTk6OTkVULNSLVc62oJmbIdzd95NcuGjX2/3YVI/Ts+t0WLE2ut5xsQ0O+90F6UxFjAI8qNcEGONia08e6MNONYwCS7EQAizLmtGUDEzTBNd1fxsYhjEBnHPQNG3KKTYV34F8ec/zwHEciOMYyrIE3/ehKAqIoggo9inGXKmFXwbyBkmSQJqmUNe15IRhCG3byphitm1/eUzDM4qR0TTNjEixGdAnSi3keS5vSk2UDKqqgizLqB4YzvassiKhGtZ/jDMtLOnHz7TE+yf8BaDZXA509yeBAAAAAElFTkSuQmCC&quot;); background-repeat: no-repeat; background-attachment: scroll; background-size: 16px 18px; background-position: 98% 50%; cursor: pointer;">
+                                <label for="inputEmail">Email address</label>
+                            </div>
+
+                            <div class="form-label-group">
+                                <input type="password" id="inputPassword" class="form-control" placeholder="Password"
+                                    required="" autocomplete="off"
+                                    style="background-image: url(&quot;data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABAAAAASCAYAAABSO15qAAAAAXNSR0IArs4c6QAAAPhJREFUOBHlU70KgzAQPlMhEvoQTg6OPoOjT+JWOnRqkUKHgqWP4OQbOPokTk6OTkVULNSLVc62oJmbIdzd95NcuGjX2/3YVI/Ts+t0WLE2ut5xsQ0O+90F6UxFjAI8qNcEGONia08e6MNONYwCS7EQAizLmtGUDEzTBNd1fxsYhjEBnHPQNG3KKTYV34F8ec/zwHEciOMYyrIE3/ehKAqIoggo9inGXKmFXwbyBkmSQJqmUNe15IRhCG3byphitm1/eUzDM4qR0TTNjEixGdAnSi3keS5vSk2UDKqqgizLqB4YzvassiKhGtZ/jDMtLOnHz7TE+yf8BaDZXA509yeBAAAAAElFTkSuQmCC&quot;); background-repeat: no-repeat; background-attachment: scroll; background-size: 16px 18px; background-position: 98% 50%; cursor: auto;">
+                                <label for="inputPassword">Password</label>
+                            </div>
+
+                            <div class="form-label-group">
+                                <input type="text" id="inputCaptcha" class="form-control" placeholder="Captcha"
+                                    required="" autocomplete="off"
+                                    style="background-image: url(&quot;data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABAAAAASCAYAAABSO15qAAAAAXNSR0IArs4c6QAAAPhJREFUOBHlU70KgzAQPlMhEvoQTg6OPoOjT+JWOnRqkUKHgqWP4OQbOPokTk6OTkVULNSLVc62oJmbIdzd95NcuGjX2/3YVI/Ts+t0WLE2ut5xsQ0O+90F6UxFjAI8qNcEGONia08e6MNONYwCS7EQAizLmtGUDEzTBNd1fxsYhjEBnHPQNG3KKTYV34F8ec/zwHEciOMYyrIE3/ehKAqIoggo9inGXKmFXwbyBkmSQJqmUNe15IRhCG3byphitm1/eUzDM4qR0TTNjEixGdAnSi3keS5vSk2UDKqqgizLqB4YzvassiKhGtZ/jDMtLOnHz7TE+yf8BaDZXA509yeBAAAAAElFTkSuQmCC&quot;); background-repeat: no-repeat; background-attachment: scroll; background-size: 16px 18px; background-position: 98% 50%; cursor: auto;">
+                                <label for="inputCaptcha">Captcha</label>
+                            </div>
+
+                            <button class="btn btn-lg btn-primary btn-block" type="submit">Sign in</button>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <!-- #Login/Register Modal -->
+
+        <!-- Optional JavaScript -->
+        <!-- jQuery first, then Popper.js, then Bootstrap JS -->
+        <script src="js/jquery-3.5.1.slim.js"></script>
+        <script src="js/popper.js"></script>
+        <script src="js/bootstrap.js"></script>
 </body>
 
 </html>
