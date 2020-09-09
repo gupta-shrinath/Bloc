@@ -4,7 +4,7 @@ contract Bloc {
     
     struct Task {
         string name;
-        int isDone;
+        bool isDone;
     }
 
     struct User {
@@ -18,6 +18,8 @@ contract Bloc {
     
     function createUser(address _account) public {
         userCount++;
+        /** Users[_account] returns a pointor which needs to be 
+        saved in storage data location to perform operation /*
         User storage user = Users[_account];
         user.accountAddress = _account;
     }
@@ -31,7 +33,7 @@ contract Bloc {
         User storage user = Users[_account];
         user.tasks.push(Task({
             name:_task,
-            isDone:0
+            isDone:false
         }));
     }
     
@@ -40,7 +42,7 @@ contract Bloc {
         delete user.tasks[_taskIndex];
     }
     
-    function updateStatus(address _account,uint256 _taskIndex,int _status) private view {
+    function updateStatus(address _account,uint256 _taskIndex,bool _status) private view {
          User memory user = Users[_account];
          user.tasks[_taskIndex].isDone = _status;
     }
