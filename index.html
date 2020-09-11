@@ -10,14 +10,14 @@
     <!-- Form CSS -->
     <link rel="stylesheet" href="css/form.css">
     <!-- Favicon-->
-    <link rel="shortcut icon" href="#">
+    <link rel="shortcut icon" href="images/bloc.png">
     <title>Bloc</title>
 </head>
 
 <body>
     <!-- Navigation Bar-->
     <nav class="navbar navbar-expand-lg navbar-dark bg-primary">
-        <a class="navbar-brand" href="#"><strong>BLOC</strong></a>
+        <a class="navbar-brand" href="#"><img src="images/bloc.png" /> <strong>BLOC</strong></a>
         <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent"
             aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
             <span class="navbar-toggler-icon"></span>
@@ -28,10 +28,10 @@
                     <a class="nav-link" href="#">HOME <span class="sr-only">(current)</span></a>
                 </li>
                 <li class="nav-item active mx-3">
-                    <a class="nav-link" href="#" data-toggle="modal" data-target="#loginModal">LOGIN</a>
+                    <a class="nav-link" href="#team">TEAM</a>
                 </li>
                 <li class="nav-item active mx-3">
-                    <a class="nav-link" href="#team">TEAM</a>
+                    <a class="nav-link" href="#" data-toggle="modal" data-target="#loginModal">APP</a>
                 </li>
             </ul>
         </div>
@@ -39,84 +39,52 @@
     <!-- #Navigation Bar -->
 
     <!-- Jumbotron-->
-    <div class="jumbotron">
-
-        <form class="form-signin float-right" _lpchecked="1">
-            <div class="form-label-group">
-                <input type="text" id="inputName" class="form-control" placeholder="Name" required="" autocomplete="off"
-                    style="background-image: url(&quot;data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABAAAAASCAYAAABSO15qAAAAAXNSR0IArs4c6QAAAPhJREFUOBHlU70KgzAQPlMhEvoQTg6OPoOjT+JWOnRqkUKHgqWP4OQbOPokTk6OTkVULNSLVc62oJmbIdzd95NcuGjX2/3YVI/Ts+t0WLE2ut5xsQ0O+90F6UxFjAI8qNcEGONia08e6MNONYwCS7EQAizLmtGUDEzTBNd1fxsYhjEBnHPQNG3KKTYV34F8ec/zwHEciOMYyrIE3/ehKAqIoggo9inGXKmFXwbyBkmSQJqmUNe15IRhCG3byphitm1/eUzDM4qR0TTNjEixGdAnSi3keS5vSk2UDKqqgizLqB4YzvassiKhGtZ/jDMtLOnHz7TE+yf8BaDZXA509yeBAAAAAElFTkSuQmCC&quot;); background-repeat: no-repeat; background-attachment: scroll; background-size: 16px 18px; background-position: 98% 50%; cursor: auto;">
-                <label for="inputName">Name</label>
-            </div>
-
-            <div class="form-label-group">
-                <input type="email" id="inputEmail" class="form-control" placeholder="Email address" required=""
-                    autofocus="" autocomplete="off"
-                    style="background-image: url(&quot;data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABAAAAASCAYAAABSO15qAAAAAXNSR0IArs4c6QAAAPhJREFUOBHlU70KgzAQPlMhEvoQTg6OPoOjT+JWOnRqkUKHgqWP4OQbOPokTk6OTkVULNSLVc62oJmbIdzd95NcuGjX2/3YVI/Ts+t0WLE2ut5xsQ0O+90F6UxFjAI8qNcEGONia08e6MNONYwCS7EQAizLmtGUDEzTBNd1fxsYhjEBnHPQNG3KKTYV34F8ec/zwHEciOMYyrIE3/ehKAqIoggo9inGXKmFXwbyBkmSQJqmUNe15IRhCG3byphitm1/eUzDM4qR0TTNjEixGdAnSi3keS5vSk2UDKqqgizLqB4YzvassiKhGtZ/jDMtLOnHz7TE+yf8BaDZXA509yeBAAAAAElFTkSuQmCC&quot;); background-repeat: no-repeat; background-attachment: scroll; background-size: 16px 18px; background-position: 98% 50%; cursor: pointer;">
-                <label for="inputEmail">Email address</label>
-            </div>
-
-            <div class="form-label-group">
-                <input type="password" id="inputPassword" class="form-control" placeholder="Password" required=""
-                    autocomplete="off"
-                    style="background-image: url(&quot;data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABAAAAASCAYAAABSO15qAAAAAXNSR0IArs4c6QAAAPhJREFUOBHlU70KgzAQPlMhEvoQTg6OPoOjT+JWOnRqkUKHgqWP4OQbOPokTk6OTkVULNSLVc62oJmbIdzd95NcuGjX2/3YVI/Ts+t0WLE2ut5xsQ0O+90F6UxFjAI8qNcEGONia08e6MNONYwCS7EQAizLmtGUDEzTBNd1fxsYhjEBnHPQNG3KKTYV34F8ec/zwHEciOMYyrIE3/ehKAqIoggo9inGXKmFXwbyBkmSQJqmUNe15IRhCG3byphitm1/eUzDM4qR0TTNjEixGdAnSi3keS5vSk2UDKqqgizLqB4YzvassiKhGtZ/jDMtLOnHz7TE+yf8BaDZXA509yeBAAAAAElFTkSuQmCC&quot;); background-repeat: no-repeat; background-attachment: scroll; background-size: 16px 18px; background-position: 98% 50%; cursor: auto;">
-                <label for="inputPassword">Password</label>
-            </div>
-
-            <button class="btn btn-lg btn-primary btn-block" type="submit">Register</button>
-        </form>
-        <div class="clearfix"></div>
+    <div class="p-2 p-md-5 text-center bg-light">
+        <div class="col-md-5 p-lg-4 mx-auto my-4">
+            <img src="https://img.icons8.com/fluent/144/000000/blockchain-new-logo.png" />
+            <h1 class="display-4 font-weight-normal">BLOC</h1>
+            <p class="lead font-weight-normal">An open-source ethereum blockchain based to-do list for your tasks.</p>
+            <img src="https://img.icons8.com/ios-glyphs/48/000000/github.png"/>
+            <img src="https://img.icons8.com/color/48/000000/javascript.png"/>
+            <img src="https://solidity.readthedocs.io/en/v0.6.6/_images/logo.svg" width="48" alt="">
+        </div>
     </div>
     <!-- #Jumbotron-->
 
     <!-- Team -->
-    <h2 class="text-center">TEAM</h1>
-        <div id="team" class="container d-flex justify-content-sm-center" style="margin-bottom: 2rem;">
+    <h2 class="text-center m-5">TEAM</h1>
+        <div id="team" class="container d-flex justify-content-sm-center my-4">
             <div class="row">
-                <div class="col-lg-4 mb-4">
+                <div class="col-lg-4 col-md-4 mb-4">
                     <div class="card">
                         <div class="card-body mx-auto">
-                            <svg class="bd-placeholder-img rounded-circle mb-4" width="140" height="140"
-                                xmlns="http://www.w3.org/2000/svg" preserveAspectRatio="xMidYMid slice"
-                                focusable="false" role="img" aria-label="Placeholder: 140x140">
-                                <title>Placeholder</title>
-                                <rect width="100%" height="100%" fill="#777"></rect><text x="50%" y="50%" fill="#777"
-                                    dy=".3em">140x140</text>
-                            </svg>
-                            <h5 class="card-title px-4">John Doe</h5>
-                            <p class="card-text px-4">Front End Dec.</p>
+                            <img class="mx-2 mb-4" src="images/darrell-young.jpeg" height="140" width="140"
+                                style="border-radius: 50%;">
+                            <h5 class="card-title text-center">Young Darrell</h5>
+                            <p class="card-text text-center text-muted">UI Developer</p>
                         </div>
                     </div>
                 </div>
 
-                <div class="col-lg-4 mb-4">
+                <div class="col-lg-4 col-md-4 mb-4">
                     <div class="card">
                         <div class="card-body mx-auto">
-                            <svg class="bd-placeholder-img rounded-circle mb-4" width="140" height="140"
-                                xmlns="http://www.w3.org/2000/svg" preserveAspectRatio="xMidYMid slice"
-                                focusable="false" role="img" aria-label="Placeholder: 140x140">
-                                <title>Placeholder</title>
-                                <rect width="100%" height="100%" fill="#777"></rect><text x="50%" y="50%" fill="#777"
-                                    dy=".3em">140x140</text>
-                            </svg>
-                            <h5 class="card-title px-4">John Doe</h5>
-                            <p class="card-text px-4">Front End Dec.</p>
+                            <img class="mx-2 mb-4" src="images/gupta-shrinath.jpeg" height="140" width="140"
+                                style="border-radius: 50%;">
+                            <h5 class="card-title text-center">Gupta Shrinath</h5>
+                            <p class="card-text text-center text-muted">Tech Lead</p>
                         </div>
                     </div>
 
                 </div>
 
-                <div class="col-lg-4 mb-4">
+                <div class="col-lg-4 col-md-4 mb-4">
                     <div class="card">
                         <div class="card-body mx-auto">
-                            <svg class="bd-placeholder-img rounded-circle mb-4" width="140" height="140"
-                                xmlns="http://www.w3.org/2000/svg" preserveAspectRatio="xMidYMid slice"
-                                focusable="false" role="img" aria-label="Placeholder: 140x140">
-                                <title>Placeholder</title>
-                                <rect width="100%" height="100%" fill="#777"></rect><text x="50%" y="50%" fill="#777"
-                                    dy=".3em">140x140</text>
-                            </svg>
-                            <h5 class="card-title px-4">John Doe</h5>
-                            <p class="card-text px-4">Front End Dec.</p>
+                            <img class="mx-2 mb-4" src="images/droid.jpeg" height="140" width="140"
+                                style="border-radius: 50%;">
+                            <h5 class="card-title text-center">Droid</h5>
+                            <p class="card-text text-center text-muted">Solidity Developer</p>
                         </div>
                     </div>
 
@@ -126,13 +94,12 @@
         </div>
         <!-- #Team-->
 
-        <!-- Login/Register Modal -->
+        <!-- Login Modal -->
         <div class="modal fade" id="loginModal" tabindex="-1" role="dialog" aria-labelledby="loginModalLabel"
             aria-hidden="true">
             <div class="modal-dialog" role="document">
                 <div class="modal-content">
-                    <div class="modal-header">
-                        <h5 class="modal-title" id="loginModalLabel">Login</h5>
+                    <div class="modal-header border border-bottom-0">
                         <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                             <span aria-hidden="true">&times;</span>
                         </button>
@@ -142,29 +109,16 @@
                             <div class="text-center mb-4">
                                 <img class="mb-4" src="" alt="" width="72" height="72">
                                 <h1 class="h3 mb-3 font-weight-normal">BLOC</h1>
-                            </div>
+                                <p>Bloc app uses your account address to identify you</p>
 
-                            <div class="form-label-group">
-                                <input type="email" id="inputEmail" class="form-control" placeholder="Email address"
-                                    required="" autofocus="" autocomplete="off"
-                                    style="background-image: url(&quot;data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABAAAAASCAYAAABSO15qAAAAAXNSR0IArs4c6QAAAPhJREFUOBHlU70KgzAQPlMhEvoQTg6OPoOjT+JWOnRqkUKHgqWP4OQbOPokTk6OTkVULNSLVc62oJmbIdzd95NcuGjX2/3YVI/Ts+t0WLE2ut5xsQ0O+90F6UxFjAI8qNcEGONia08e6MNONYwCS7EQAizLmtGUDEzTBNd1fxsYhjEBnHPQNG3KKTYV34F8ec/zwHEciOMYyrIE3/ehKAqIoggo9inGXKmFXwbyBkmSQJqmUNe15IRhCG3byphitm1/eUzDM4qR0TTNjEixGdAnSi3keS5vSk2UDKqqgizLqB4YzvassiKhGtZ/jDMtLOnHz7TE+yf8BaDZXA509yeBAAAAAElFTkSuQmCC&quot;); background-repeat: no-repeat; background-attachment: scroll; background-size: 16px 18px; background-position: 98% 50%; cursor: pointer;">
-                                <label for="inputEmail">Email address</label>
                             </div>
-
-                            <div class="form-label-group">
-                                <input type="password" id="inputPassword" class="form-control" placeholder="Password"
-                                    required="" autocomplete="off"
-                                    style="background-image: url(&quot;data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABAAAAASCAYAAABSO15qAAAAAXNSR0IArs4c6QAAAPhJREFUOBHlU70KgzAQPlMhEvoQTg6OPoOjT+JWOnRqkUKHgqWP4OQbOPokTk6OTkVULNSLVc62oJmbIdzd95NcuGjX2/3YVI/Ts+t0WLE2ut5xsQ0O+90F6UxFjAI8qNcEGONia08e6MNONYwCS7EQAizLmtGUDEzTBNd1fxsYhjEBnHPQNG3KKTYV34F8ec/zwHEciOMYyrIE3/ehKAqIoggo9inGXKmFXwbyBkmSQJqmUNe15IRhCG3byphitm1/eUzDM4qR0TTNjEixGdAnSi3keS5vSk2UDKqqgizLqB4YzvassiKhGtZ/jDMtLOnHz7TE+yf8BaDZXA509yeBAAAAAElFTkSuQmCC&quot;); background-repeat: no-repeat; background-attachment: scroll; background-size: 16px 18px; background-position: 98% 50%; cursor: auto;">
-                                <label for="inputPassword">Password</label>
-                            </div>
-
-                            <button class="btn btn-lg btn-primary btn-block" type="submit">Sign in</button>
+                            <a href="app.html" class="btn btn-lg btn-primary btn-block" role="button">Get Started</a>
                         </form>
                     </div>
                 </div>
             </div>
         </div>
-        <!-- #Login/Register Modal -->
+        <!-- #Login Modal -->
 
         <!-- Optional JavaScript -->
         <!-- jQuery first, then Popper.js, then Bootstrap JS -->
