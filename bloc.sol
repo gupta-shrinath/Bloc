@@ -18,8 +18,8 @@ contract Bloc {
     
     function createUser(address _account) public {
         userCount++;
-        /** Users[_account] returns a pointor which needs to be 
-        saved in storage data location to perform operation /*
+        /* Users[_account] returns a pointor which needs to be 
+        saved in storage data location to perform operation  */
         User storage user = Users[_account];
         user.accountAddress = _account;
     }
