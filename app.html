@@ -68,31 +68,93 @@
             margin-right: 27px;
             margin-bottom: 31px;
         }
+
+        .add-task-container {
+            top: 150px;
+            width: 300px;
+            height: 187px;
+            background: #FFFFFF;
+            border-radius: 25px 25px 0px 0px;
+            opacity: 1;
+            position: absolute;
+        }
+
+        .task-done {
+            color: gray;
+            text-decoration: line-through;
+        }
     </style>
 </head>
 
 <body style="background: #BCE0FD">
     <div class="card-container my-5 border-left-0">
         <div class="icon-circle">
-            <img class="px-2 py-2" src="images/icons8-add-list-48.png" alt="icon">
+            <img class="px-2 py-2" src="images/add-list.png" alt="icon">
         </div>
         <h2 class="bloc text-white"><strong>BLOC</strong></h1>
             <p class="task-count text-white"> 2 Task</p>
             <div class="task-card">
-                <button class="fab float-right">
+                <button id="fab" class="fab float-right" data-toggle="modal" data-target="#add-task-container">
                     <img clas="m-auto" src="images/plus.png" alt="" height="16" width="16">
                 </button>
+                <ul id="list" class="list-group mt-3">
+                    <li id="item-1" class="list-group-item border-0 d-flex justify-content-between align-items-center ">
+                        Cras justo odio
+                        <input id="item-1-checkbox" type="checkbox" onclick="changeTaskStatus(this.id);">
+                    </li>
+                </ul>
+                <div id="add-task-container" class="modal add-task-container" data-backdrop="static">
+                    <div class="container">
+                        <div class="col mx-2">
+                            <h5 class="text-primary text-center mt-4">New Task</h5>
+                            <input id="new-task" class="mt-3" type="text">
+                            <button type="button" data-dismiss="modal" class="btn btn-primary btn-block mt-3"
+                                onclick="addTask();">Add
+                                Task</button>
+                        </div>
+
+                    </div>
+
+                </div>
             </div>
-
-
     </div>
 
-    
     <!-- Optional JavaScript -->
     <!-- jQuery first, then Popper.js, then Bootstrap JS -->
     <script src="js/jquery-3.5.1.slim.js"></script>
     <script src="js/popper.js"></script>
     <script src="js/bootstrap.js"></script>
+    <script>
+        function changeTaskStatus(id) {
+            console.log(id);
+            let checkbox = document.getElementById(id);
+            let textId = id.replace('-checkbox', '');
+            console.log(checkbox.checked);
+            let text = document.getElementById(textId);
+            if (checkbox.checked == true) {
+                console.log('asda');
+                text.classList.add("task-done");
+            } else {
+                text.classList.remove("task-done");
+            }
+        }
+
+        function addTask() {
+            let list = document.getElementById('list');
+            let item = document.createElement('li');
+            item.classList.add('list-group-item','border-0','d-flex','justify-content-between','align-items-center');
+            item.id = 'item-2';
+            let task = document.createTextNode('task-2');
+            var checkbox = document.createElement("INPUT");
+            checkbox.setAttribute("type", "checkbox");
+            checkbox.setAttribute("id","item-2-checkbox");
+            checkbox.checked = false;
+            list.appendChild(item);
+            item.appendChild(task);
+            item.appendChild(checkbox);
+            checkbox.onclick = function(){changeTaskStatus(checkbox.id);};
+        }
+    </script>
 </body>
 
 </html>
