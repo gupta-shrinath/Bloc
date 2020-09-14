@@ -27,3 +27,22 @@ function addTask() {
     item.appendChild(checkbox);
     checkbox.onclick = function () { changeTaskStatus(checkbox.id); };
 }
+
+function removeTask(id) {
+    console.log("started");
+    let hashId = '#' + id;
+    console.log(hashId);
+    $(hashId).remove();
+    updateTasksCount();
+}
+
+function updateTasksCount() {
+    let list = document.getElementById('list');
+    let taskCount = list.childElementCount;
+    let count = document.getElementById('taskCount');
+    count.innerText = taskCount + " Task";
+}
+
+$(document).ready(function () {
+    updateTasksCount();
+});
