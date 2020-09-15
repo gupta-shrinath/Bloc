@@ -16,17 +16,20 @@ contract Bloc {
     
     mapping (address => User) private Users;
     
+    address[] private accountAddress;
+    
     uint256 private userCount = 0;
     
     function createUser(address _account) external {
         userCount++;
         /* Users[_account] returns a pointor which needs to be 
         saved in storage data location to perform operation  */
+        accountAddress.push(_account);
         User storage user = Users[_account];
         user.accountAddress = _account;
     }
     
-     function getTask(address _account,uint256 _taskIndex) external view returns(Task memory) {
+     function getTask(address _account,uint256 _taskIndex) external view returns (Task memory) {
         User memory user = Users[_account];
         return user.tasks[_taskIndex];
     }
@@ -49,11 +52,21 @@ contract Bloc {
          user.tasks[_taskIndex].isDone = _status;
     }
     
-    function getTaskCount(address _account) external view returns(uint256) {
+    function getTaskCount(address _account) external view returns (uint256) {
         User memory user = Users[_account];
         return user.tasks.length;
     }
     
-}
+    function getUserCount() external view returns (uint256){
+        return userCount;
+    }
 
- 
+    function isUserCreated(address _account) external view returns (bool) {
+        for(uint i=0;i<accountAddress.length;i++) {
+            if(_account == accountAddress[i]) {
+                return true;
+            }
+        }
+        return false;
+    }
+}
