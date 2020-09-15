@@ -1,4 +1,6 @@
 pragma solidity ^0.5.1;
+/* To be able to return Task struct from getTask method*/
+pragma experimental ABIEncoderV2;
 
 contract Bloc {
     
@@ -14,9 +16,9 @@ contract Bloc {
     
     mapping (address => User) private Users;
     
-    uint256 public userCount = 0;
+    uint256 private userCount = 0;
     
-    function _createUser(address _account) private {
+    function createUser(address _account) external {
         userCount++;
         /* Users[_account] returns a pointor which needs to be 
         saved in storage data location to perform operation  */
@@ -24,12 +26,12 @@ contract Bloc {
         user.accountAddress = _account;
     }
     
-    function _getTask(address _account,uint256 _taskIndex) private view returns(Task memory) {
+     function getTask(address _account,uint256 _taskIndex) external view returns(Task memory) {
         User memory user = Users[_account];
         return user.tasks[_taskIndex];
     }
     
-    function _addTask(address _account,string memory _task) private {
+    function addTask(address _account,string calldata _task) external {
         User storage user = Users[_account];
         user.tasks.push(Task({
             name:_task,
@@ -37,17 +39,17 @@ contract Bloc {
         }));
     }
     
-    function _deleteTask(address _account,uint256 _taskIndex) private view {
+    function deleteTask(address _account,uint256 _taskIndex) external view {
         User memory user = Users[_account];
         delete user.tasks[_taskIndex];
     }
     
-    function _updateStatus(address _account,uint256 _taskIndex,bool _status) private view {
+    function updateStatus(address _account,uint256 _taskIndex,bool _status) external view {
          User memory user = Users[_account];
          user.tasks[_taskIndex].isDone = _status;
     }
     
-    function _getTaskCount(address _account) private view returns(uint256) {
+    function getTaskCount(address _account) external view returns(uint256) {
         User memory user = Users[_account];
         return user.tasks.length;
     }
