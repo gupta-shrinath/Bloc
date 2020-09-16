@@ -24,15 +24,15 @@ located in the left panel and name the file as bloc.sol (Make sure to sure http 
     - Copy the code present in bloc.sol from this repo.
     - Go to solidity compiler located in the left panel and click on compile bloc.sol.
       down you'll find a button with copy icon and text as ABI click on it.Paste it in 
-      `js/config.js` line 1
-      var contractABI = `COPIED TEXT`;
+      `js/config.js` line 1<br>
+      >var contractABI = `COPIED TEXT`;<br>
       The copied text will be enclosed in [].
     - Go to deploy and run transaction under environment select Web3 Provider. 
     - Enter the address you copied from Ganache and paste it click on OK.
     - Now a deploy button will be visible click on it. 
     - Down you'll find Deployed Contracts label now there will a copy icon button click on it   
       and paste in `js/config.js` line 2
-      var contractAddress = '`COPIED text`';
+      >var contractAddress = '`COPIED text`';<br>
       The copied text might look like this 0xF3017acEDd45526aC6153FBBCfcA8096173D245a.
 - Download [VSCode](https://code.visualstudio.com/download) for live server extension (any other 
 server will also work)
