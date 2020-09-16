@@ -18,7 +18,7 @@
 - Download [Ganache](https://www.trufflesuite.com/ganache) for local ethereum blockchain.
 Click on Quickstart Ethereum and after that note the address labeled under RPC Server 
 (should be something like this http://127.0.0.1:7545) and make sure to copy the same 
-address in js/getAccount.js file line 1.
+address in `js/getAccount.js` file line 1.
 - Go to [Remix IDE](http://remix.ethereum.org/) click on the plus icon in the file explorers
 located in the left panel and name the file as bloc.sol (Make sure to sure http site not https).
     - Copy the code present in bloc.sol from this repo.
