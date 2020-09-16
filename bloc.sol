@@ -42,13 +42,13 @@ contract Bloc {
         }));
     }
     
-    function deleteTask(address _account,uint256 _taskIndex) external view {
-        User memory user = Users[_account];
+    function deleteTask(address _account,uint256 _taskIndex) external  {
+        User storage user = Users[_account];
         delete user.tasks[_taskIndex];
     }
     
-    function updateStatus(address _account,uint256 _taskIndex,bool _status) external view {
-         User memory user = Users[_account];
+    function updateStatus(address _account,uint256 _taskIndex,bool _status) external  {
+         User storage user = Users[_account];
          user.tasks[_taskIndex].isDone = _status;
     }
     
