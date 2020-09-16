@@ -4,8 +4,8 @@
 
 @font-face {
     font-family: 'manroperegular';
-    src: url('fonts/manrope-regular-webfont.woff2') format('woff2'),
-         url('fonts/manrope-regular-webfont.woff') format('woff');
+    src: url('../fonts/manrope-regular-webfont.woff2') format('woff2'),
+         url('../fonts/manrope-regular-webfont.woff') format('woff');
     font-weight: normal;
     font-style: normal;
 
