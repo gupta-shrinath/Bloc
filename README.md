@@ -32,7 +32,7 @@ located in the left panel and name the file as bloc.sol (Make sure to sure http 
     - Now a deploy button will be visible click on it. 
     - Down you'll find Deployed Contracts label now there will a copy icon button click on it   
       and paste in `js/config.js` line 2
-      >var contractAddress = '`COPIED text`';<br>
+      >var contractAddress = `'COPIED text'`;<br>
       The copied text might look like this 0xF3017acEDd45526aC6153FBBCfcA8096173D245a.
 - Download [VSCode](https://code.visualstudio.com/download) for live server extension (any other 
 server will also work)
@@ -40,7 +40,7 @@ server will also work)
 - Open the folder containing this repo and down in the blue status bar and click on Go live.  
 
 ## Screenshots
-Coming Soon.
+![Bloc App](https://github.com/gupta-shrinath/Bloc/blob/gupta-shrinath/images/bloc-app.png)
 
 ## Credits
 #### [Icons8](https://icons8.com/)
