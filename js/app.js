@@ -30,14 +30,14 @@ async function createTaskList() {
                                 if (task[0] != '') {
                                     // addTaskToList add this task as children to the ul tag //
                                     addTaskToList(taskIterator, task[0], task[1]);
-                                    // update the number of task //
-                                    updateTasksCount();
                                 }
                             } catch { 
                                 console.log('Failed to get Task ' + taskIterator);
                             }
                             taskIterator++;
                         }
+                        // update the number of task //
+                        updateTasksCount();
                     }
                 } catch {
                     console.log('Failed to get task count from blockchain');
