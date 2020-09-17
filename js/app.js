@@ -5,7 +5,6 @@ async function createTaskList() {
     try {
         await getAccount();
         // Set contract and set gas //
-        web3.eth.defaultAccount = '0x2C797d8f0a0CdA52144900aa62BAe27551d79621';
         contract = new web3.eth.Contract(contractABI, contractAddress);
         try {
             numberOfTask = await contract.methods.getTaskCount().call({ from: web3.eth.defaultAccount });
@@ -86,7 +85,7 @@ function addTaskToList(id, name, status) {
     // Append the checkbox for task //
     item.appendChild(checkbox);
     // Add onclick to the checkbox // 
-    checkbox.onclick = function () { changeTaskStatus(checkbox.id, web3.eth.defaultAccount, id); };
+    checkbox.onclick = function () { changeTaskStatus(checkbox.id, id); };
 }
 
 async function removeTask(taskIndex) {
@@ -104,7 +103,7 @@ async function removeTask(taskIndex) {
     }
 }
 
-async function changeTaskStatus(id, account, taskIndex) {
+async function changeTaskStatus(id,taskIndex) {
     // Get checkbox element //
     let checkbox = document.getElementById(id);
     // Get the id of the li element //
@@ -115,7 +114,7 @@ async function changeTaskStatus(id, account, taskIndex) {
     if (checkbox.checked == true) {
         try {
             console.log('Change Status of task ' + textId + ' in blockchain');
-            await contract.methods.updateStatus(taskIndex, checkbox.checked).send({ from: account });
+            await contract.methods.updateStatus(taskIndex,checkbox.checked).send({ from: web3.eth.defaultAccount });
             text.classList.add("task-done");
         } catch {
             console.log('Failed to change Status of task ' + textId + ' in blockchain');
@@ -123,7 +122,7 @@ async function changeTaskStatus(id, account, taskIndex) {
     } else {
         try {
             console.log('Change Status of task ' + textId + ' in blockchain');
-            await contract.methods.updateStatus(taskIndex, checkbox.checked).send({ from: account });
+            await contract.methods.updateStatus(taskIndex, checkbox.checked).send({ from: web3.eth.defaultAccount });
             text.classList.remove("task-done");
         } catch {
             console.log('Failed to change Status of task ' + textId + ' in blockchain');
@@ -152,7 +151,6 @@ async function addTask(name) {
     document.getElementById('new-task').value = '';
     console.log('Get the number of task from blockchain');
     contract.methods.getTaskCount().call({ from: web3.eth.defaultAccount }).then(numberOfTask => {
-        numberOfTask = parseInt(numberOfTask) + 1;
         addTaskToList(numberOfTask, name, false);
         updateTasksCount();
     }, err => {
