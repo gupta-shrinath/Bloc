@@ -1,0 +1,76 @@
+<!doctype html>
+<html lang="en">
+
+<head>
+    <!-- Required meta tags -->
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <!-- Bootstrap CSS -->
+    <link rel="stylesheet" href="css/bootstrap.css">
+    <!-- App CSS-->
+    <link rel="stylesheet" href="css/app.css">
+    <!-- Font CSS -->
+    <link rel="stylesheet" href="css/font.css">
+    <!-- Favicon-->
+    <link rel="shortcut icon" href="images/bloc-logo.png">
+    <title>Bloc</title>
+</head>
+
+<body style="background: #BCE0FD">
+    <div class="card-container my-5 border-left-0">
+        <div class="icon-circle">
+            <img class="px-2 py-2" src="images/add-list.png" alt="icon">
+        </div>
+        <h2 class="bloc text-white"><strong>BLOC</strong></h1>
+            <p id="taskCount" class="task-count text-white">0 Task</p>
+            <div class="task-card">
+                <!-- Floating Action Button -->
+                <button id="fab" class="fab float-right" data-toggle="modal" data-target="#add-task-container">
+                    <img clas="m-auto" src="images/plus.png" alt="" height="16" width="16">
+                </button>
+                <!-- #Floating Action Button -->
+
+                <!-- Task List-->
+                <ul id="list" class="list-group mt-3">
+
+                    <!-- Items-->
+                    <!-- <li id="item-1" class="list-group-item border-0 d-flex justify-content-between align-items-center"
+                        ondblclick="removeTask(this.id);">
+                        Exercise
+                        <input id="item-1-checkbox" type="checkbox" onclick="changeTaskStatus(this.id);">
+                    </li> -->
+                    <!-- #Items-->
+
+                </ul>
+                <!-- #Task List-->
+
+                <!-- Add Task Modal -->
+                <div id="add-task-container" class="modal add-task-container" data-backdrop="static">
+                    <div class="container">
+                        <div class="col mx-2">
+                            <h5 class="text-primary text-center mt-4">New Task</h5>
+                            <input id="new-task" class="mt-3" type="text">
+                            <button type="button" data-dismiss="modal" class="btn btn-primary btn-block mt-3"
+                                onclick="addTask(document.getElementById('new-task').value);">Add
+                                Task</button>
+                        </div>
+                    </div>
+                </div>
+                <!-- #Add Task Modal -->
+
+            </div>
+    </div>
+
+    <!-- Optional JavaScript -->
+    <!-- jQuery first, then Popper.js, then Bootstrap JS -->
+    <script src="js/jquery-3.5.1.slim.js"></script>
+    <script src="js/popper.js"></script>
+    <script src="js/bootstrap.js"></script>
+    <!-- App and related files JS-->
+    <script src="js/web3.js"></script>
+    <script src="js/config.js"></script>
+    <script src="js/getAccount.js"></script>
+    <script src="js/app.js"></script>
+</body>
+
+</html>

@@ -1,0 +1,2 @@
+var contractABI;
+var contractAddress;

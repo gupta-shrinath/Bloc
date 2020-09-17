@@ -1,0 +1,134 @@
+<!doctype html>
+<html lang="en">
+
+<head>
+    <!-- Required meta tags -->
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <!-- Bootstrap CSS -->
+    <link rel="stylesheet" href="css/bootstrap.css">
+    <!-- Font CSS -->
+    <link rel="stylesheet" href="css/font.css">
+    <!-- Favicon-->
+    <link rel="shortcut icon" href="images/bloc-logo.png">
+    <title>Bloc</title>
+</head>
+
+<body>
+    <!-- Navigation Bar-->
+    <nav class="navbar navbar-expand-lg navbar-dark bg-primary">
+        <a class="navbar-brand" href="#"><img src="images/bloc-logo.png" /> <strong>BLOC</strong></a>
+        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent"
+            aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse" id="navbarSupportedContent" style="margin-right: 100px;">
+            <ul class="navbar-nav ml-auto">
+                <li class="nav-item active mx-3">
+                    <a class="nav-link" href="#">HOME <span class="sr-only">(current)</span></a>
+                </li>
+                <li class="nav-item active mx-3">
+                    <a class="nav-link" href="#team">TEAM</a>
+                </li>
+                <li class="nav-item active mx-3">
+                    <a class="nav-link" href="#" data-toggle="modal" data-target="#loginModal">APP</a>
+                </li>
+            </ul>
+        </div>
+    </nav>
+    <!-- #Navigation Bar -->
+
+    <!-- Jumbotron-->
+    <div class="p-2 p-md-5 text-center bg-light">
+        <div class="col-md-5 p-lg-4 mx-auto my-4">
+            <img src="images/bloc-header-logo.png" alt="BLOC Logo"/>
+            <h1 class="display-4 font-weight-normal">BLOC</h1>
+            <p class="lead font-weight-normal">An open-source ethereum blockchain based to-do list for your tasks.</p>
+            <img src="images/github.png" alt="Github"/>
+            <img src="images/javascript.png" alt="Javascript"/>
+            <img src="images/solidity.svg" width="48" alt="Solidity"/>
+            <img src="images/ganache.svg" width="48" alt="Ganache" />
+        </div>
+    </div>
+    <!-- #Jumbotron-->
+
+    <!-- Team -->
+    <h2 class="text-center m-5">TEAM</h1>
+        <div id="team" class="container d-flex justify-content-sm-center my-4">
+            <div class="row">
+                <div class="col-lg-4 col-md-4 mb-4">
+                    <div class="card">
+                        <div class="card-body mx-auto">
+                            <img class="mx-2 mb-4" src="images/gupta-shrinath.jpeg" height="140" width="140"
+                                style="border-radius: 50%;" alt="Young Darrell">
+                            <h5 class="card-title text-center">Young Darrell</h5>
+                            <p class="card-text text-center text-muted">UI Developer</p>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="col-lg-4 col-md-4 mb-4">
+                    <div class="card">
+                        <div class="card-body mx-auto">
+                            <img class="mx-2 mb-4" src="images/gupta-shrinath.jpeg" height="140" width="140"
+                                style="border-radius: 50%;" alt="Gupta Shrinath">
+                            <h5 class="card-title text-center">Gupta Shrinath</h5>
+                            <p class="card-text text-center text-muted">Tech Lead</p>
+                        </div>
+                    </div>
+
+                </div>
+
+                <div class="col-lg-4 col-md-4 mb-4">
+                    <div class="card">
+                        <div class="card-body mx-auto">
+                            <img class="mx-2 mb-4" src="images/gupta-shrinath.jpeg" height="140" width="140"
+                                style="border-radius: 50%;" alt="Droid">
+                            <h5 class="card-title text-center">Droid</h5>
+                            <p class="card-text text-center text-muted">Solidity Developer</p>
+                        </div>
+                    </div>
+
+                </div>
+
+            </div>
+        </div>
+        <!-- #Team-->
+
+        <!-- Login Modal -->
+        <div class="modal fade" id="loginModal" tabindex="-1" role="dialog" aria-labelledby="loginModalLabel"
+            aria-hidden="true">
+            <div class="modal-dialog" role="document">
+                <div class="modal-content">
+                    <div class="modal-header border border-bottom-0">
+                        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                            <span aria-hidden="true">&times;</span>
+                        </button>
+                    </div>
+                    <div class="modal-body">
+                        <form class="form-signin" _lpchecked="1">
+                            <div class="text-center mb-4">
+                                <img class="mb-4" src="images/bloc-header-logo.png" alt="" width="72" height="72">
+                                <h1 class="h3 mb-3 font-weight-bold">BLOC</h1>
+                                <p class="text-muted">Bloc app uses your account address <label id="account-address"></label> to identify you</p>
+
+                            </div>
+                            <a href="app.html" class="btn btn-lg btn-primary btn-block" role="button">Get Started</a>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <!-- #Login Modal -->
+
+        <!-- Optional JavaScript -->
+        <!-- jQuery first, then Popper.js, then Bootstrap JS -->
+        <script src="js/jquery-3.5.1.slim.js"></script>
+        <script src="js/popper.js"></script>
+        <script src="js/bootstrap.js"></script>
+        <script src="js/web3.js"></script>
+        <script src="js/getAccount.js"></script>
+        <script src="js/index.js"></script>
+</body>
+
+</html>
