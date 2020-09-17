@@ -5,54 +5,40 @@ async function createTaskList() {
     try {
         await getAccount();
         // Set contract and set gas //
+        web3.eth.defaultAccount = '0x2C797d8f0a0CdA52144900aa62BAe27551d79621';
         contract = new web3.eth.Contract(contractABI, contractAddress);
-        contract.options.gas = 10000000000;
         try {
-            let isUserCreated = await contract.methods.isUserCreated(web3.eth.defaultAccount).call({ from: web3.eth.defaultAccount });
-            if (isUserCreated) {
-                // Check if user exists and fetch the number of task they have //
-                console.log(web3.eth.defaultAccount + ' is a Bloc User');
-                try {
-                    numberOfTask = await contract.methods.getTaskCount(web3.eth.defaultAccount).call({ from: web3.eth.defaultAccount });
-                    /*  The actual number of task may differ because
-                        when an task is removed the task element is 
-                        removed not it's index.
-                    */
-                    console.log('Number of Tasks are ' + numberOfTask);
-                    // If there are task present //
-                    if (numberOfTask != 0) {
-                        // Fetch one task after the other until no task remain // 
-                        console.log('Start fetching task ...');
-                        let taskIterator = 0;
-                        while (taskIterator < numberOfTask) {
-                            try {
-                                let task = await contract.methods.getTask(web3.eth.defaultAccount, taskIterator).call({ from: web3.eth.defaultAccount });
-                                if (task[0] != '') {
-                                    // addTaskToList add this task as children to the ul tag //
-                                    addTaskToList(taskIterator, task[0], task[1]);
-                                }
-                            } catch { 
-                                console.log('Failed to get Task ' + taskIterator);
-                            }
-                            taskIterator++;
+            numberOfTask = await contract.methods.getTaskCount().call({ from: web3.eth.defaultAccount });
+            /*  The actual number of task may differ because
+                when an task is removed the task element is 
+                removed not it's index.
+            */
+            console.log('Number of Tasks are ' + numberOfTask);
+            // If there are task present //
+            if (numberOfTask != 0) {
+                // Fetch one task after the other until no task remain // 
+                console.log('Start fetching task ...');
+                let taskIterator = 0;
+                while (taskIterator < numberOfTask) {
+                    try {
+                        let task = await contract.methods.getTask(taskIterator).call({ from: web3.eth.defaultAccount });
+                        if (task[0] != '') {
+                            // addTaskToList add this task as children to the ul tag //
+                            addTaskToList(taskIterator, task[0], task[1]);
                         }
-                        // update the number of task //
-                        updateTasksCount();
+                        else {
+                            console.log('The index ' + taskIterator + ' is empty');
+                        }
+                    } catch { 
+                        console.log('Failed to get Task ' + taskIterator);
                     }
-                } catch {
-                    console.log('Failed to get task count from blockchain');
+                    taskIterator++;
                 }
-            } else {
-                try {
-                    console.log('Create account for ' + web3.eth.defaultAccount + ' in blockchain');
-                    await contract.methods.createUser(web3.eth.defaultAccount).send({ from: web3.eth.defaultAccount });
-                } catch {
-                    console.log('Failed to create account for ' + web3.eth.defaultAccount + ' in blockchain');
-                }
+                // update the number of task //
+                updateTasksCount();
             }
         } catch {
-            console.log('Failed to detect whether user was created');
-
+            console.log('Failed to get task count from blockchain');
         }
     } catch {
         console.log('Failed to get the acount');
@@ -103,18 +89,18 @@ function addTaskToList(id, name, status) {
     checkbox.onclick = function () { changeTaskStatus(checkbox.id, web3.eth.defaultAccount, id); };
 }
 
-async function removeTask(id) {
-    console.log("removeTask(): Remove Task " + id);
+async function removeTask(taskIndex) {
+    console.log("removeTask(): Remove Task " + taskIndex);
     // Create the selector for the Task //
-    let taskSelector = '#' + id;
-    id = id.replace('item-', '');
+    let taskSelector = '#' + taskIndex;
+    taskIndex = taskIndex.replace('item-', '');
     try {
-        console.log('Remove Task ' + id + ' from the blockchain');
-        await contract.methods.deleteTask(web3.eth.defaultAccount, id).send({ from: web3.eth.defaultAccount });
+        console.log('Remove Task ' + taskIndex + ' from the blockchain');
+        await contract.methods.deleteTask(taskIndex).send({ from: web3.eth.defaultAccount });
         $(taskSelector).remove();
         updateTasksCount();
     } catch {
-        console.log('Issue occured while removing task item-' + id);
+        console.log('Issue occured while removing task item-' + taskIndex);
     }
 }
 
@@ -129,7 +115,7 @@ async function changeTaskStatus(id, account, taskIndex) {
     if (checkbox.checked == true) {
         try {
             console.log('Change Status of task ' + textId + ' in blockchain');
-            await contract.methods.updateStatus(account, taskIndex, checkbox.checked).send({ from: account });
+            await contract.methods.updateStatus(taskIndex, checkbox.checked).send({ from: account });
             text.classList.add("task-done");
         } catch {
             console.log('Failed to change Status of task ' + textId + ' in blockchain');
@@ -137,7 +123,7 @@ async function changeTaskStatus(id, account, taskIndex) {
     } else {
         try {
             console.log('Change Status of task ' + textId + ' in blockchain');
-            await contract.methods.updateStatus(account, taskIndex, checkbox.checked).send({ from: account });
+            await contract.methods.updateStatus(taskIndex, checkbox.checked).send({ from: account });
             text.classList.remove("task-done");
         } catch {
             console.log('Failed to change Status of task ' + textId + ' in blockchain');
@@ -165,15 +151,16 @@ async function addTask(name) {
     // Set blank value for text in the addtask modal //
     document.getElementById('new-task').value = '';
     console.log('Get the number of task from blockchain');
-    contract.methods.getTaskCount(web3.eth.defaultAccount).call({ from: web3.eth.defaultAccount }).then(numberOfTask => {
+    contract.methods.getTaskCount().call({ from: web3.eth.defaultAccount }).then(numberOfTask => {
+        numberOfTask = parseInt(numberOfTask) + 1;
         addTaskToList(numberOfTask, name, false);
         updateTasksCount();
     }, err => {
         console.log('Failed to get the number of task in blockchain ' + err);
     });
     try {
-        console.log('Add task to blockchain');
-        await contract.methods.addTask(web3.eth.defaultAccount, name).send({ from: web3.eth.defaultAccount });
+        console.log('Add task ' + name + ' to blockchain');
+        await contract.methods.addTask(name).send({ from: web3.eth.defaultAccount });
     } catch {
         console.log('Failed to add task to EVM');
     }
