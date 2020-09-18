@@ -1,5 +1,9 @@
 $(document).ready(createTaskList());
 
+$('#add-task-container').on('shown.bs.modal', function () {
+    $('#new-task').trigger('focus');
+});
+
 async function createTaskList() {
     // Get account from the Ganache EVM //
     try {
@@ -28,7 +32,7 @@ async function createTaskList() {
                         else {
                             console.log('The index ' + taskIterator + ' is empty');
                         }
-                    } catch { 
+                    } catch {
                         console.log('Failed to get Task ' + taskIterator);
                     }
                     taskIterator++;
@@ -42,7 +46,7 @@ async function createTaskList() {
     } catch {
         console.log('Failed to get the acount');
     }
-   
+
 }
 
 function addTaskToList(id, name, status) {
@@ -103,7 +107,7 @@ async function removeTask(taskIndex) {
     }
 }
 
-async function changeTaskStatus(id,taskIndex) {
+async function changeTaskStatus(id, taskIndex) {
     // Get checkbox element //
     let checkbox = document.getElementById(id);
     // Get the id of the li element //
@@ -114,7 +118,7 @@ async function changeTaskStatus(id,taskIndex) {
     if (checkbox.checked == true) {
         try {
             console.log('Change Status of task ' + textId + ' in blockchain');
-            await contract.methods.updateStatus(taskIndex,checkbox.checked).send({ from: web3.eth.defaultAccount });
+            await contract.methods.updateStatus(taskIndex, checkbox.checked).send({ from: web3.eth.defaultAccount });
             text.classList.add("task-done");
         } catch {
             console.log('Failed to change Status of task ' + textId + ' in blockchain');
@@ -147,20 +151,32 @@ function updateTasksCount() {
    to the blockchain and HTML
 */
 async function addTask(name) {
-    // Set blank value for text in the addtask modal //
-    document.getElementById('new-task').value = '';
-    console.log('Get the number of task from blockchain');
-    contract.methods.getTaskCount().call({ from: web3.eth.defaultAccount }).then(numberOfTask => {
-        addTaskToList(numberOfTask, name, false);
-        updateTasksCount();
-    }, err => {
-        console.log('Failed to get the number of task in blockchain ' + err);
-    });
-    try {
-        console.log('Add task ' + name + ' to blockchain');
-        await contract.methods.addTask(name).send({ from: web3.eth.defaultAccount });
-    } catch {
-        console.log('Failed to add task to EVM');
+    let form = document.getElementById('add-task-form');
+    if (form.checkValidity()) {
+        console.log('Get the number of task from blockchain');
+        // Set blank value for text in the addtask modal //
+        document.getElementById('new-task').value = '';
+        form.classList.remove('was-validated');
+        contract.methods.getTaskCount().call({ from: web3.eth.defaultAccount }).then(numberOfTask => {
+            addTaskToList(numberOfTask, name, false);
+            updateTasksCount();
+        }, err => {
+            console.log('Failed to get the number of task in blockchain ' + err);
+        });
+        try {
+            console.log('Add task ' + name + ' to blockchain');
+            await contract.methods.addTask(name).send({ from: web3.eth.defaultAccount });
+        } catch {
+            console.log('Failed to add task to EVM');
+        }
+
+    } else {
+        event.preventDefault();
+        event.stopPropagation();
+        form.classList.add('was-validated');
+        // Set blank value for text in the addtask modal //
+        document.getElementById('new-task').value = '';
     }
+
 }
 
