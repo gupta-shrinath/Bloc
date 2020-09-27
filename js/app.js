@@ -1,65 +1,70 @@
 $(document).ready(createTaskList());
 
+// Auto focus on input of add task modal //
+$('#add-task-container').on('shown.bs.modal', function () {
+    $('#new-task').trigger('focus');
+});
+
+/** 
+ * createTaskList() set the contract object and gets the number 
+ * of tasks of the user and then calls addTaskToList() to add 
+ * them to HTML one after the other after all task are added to
+ * HTML then calls updateTaskCount()
+ * @author Gupta Shrinath <https://github.com/gupta-shrinath>
+*/
 async function createTaskList() {
     // Get account from the Ganache EVM //
     try {
         await getAccount();
         // Set contract and set gas //
         contract = new web3.eth.Contract(contractABI, contractAddress);
-        contract.options.gas = 10000000000;
         try {
-            let isUserCreated = await contract.methods.isUserCreated(web3.eth.defaultAccount).call({ from: web3.eth.defaultAccount });
-            if (isUserCreated) {
-                // Check if user exists and fetch the number of task they have //
-                console.log(web3.eth.defaultAccount + ' is a Bloc User');
-                try {
-                    numberOfTask = await contract.methods.getTaskCount(web3.eth.defaultAccount).call({ from: web3.eth.defaultAccount });
-                    /*  The actual number of task may differ because
-                        when an task is removed the task element is 
-                        removed not it's index.
-                    */
-                    console.log('Number of Tasks are ' + numberOfTask);
-                    // If there are task present //
-                    if (numberOfTask != 0) {
-                        // Fetch one task after the other until no task remain // 
-                        console.log('Start fetching task ...');
-                        let taskIterator = 0;
-                        while (taskIterator < numberOfTask) {
-                            try {
-                                let task = await contract.methods.getTask(web3.eth.defaultAccount, taskIterator).call({ from: web3.eth.defaultAccount });
-                                if (task[0] != '') {
-                                    // addTaskToList add this task as children to the ul tag //
-                                    addTaskToList(taskIterator, task[0], task[1]);
-                                }
-                            } catch { 
-                                console.log('Failed to get Task ' + taskIterator);
-                            }
-                            taskIterator++;
+            numberOfTask = await contract.methods.getTaskCount().call({ from: web3.eth.defaultAccount });
+            /*  The actual number of task may differ because
+                when an task is removed the task element is 
+                removed and the index value now has nothing.
+            */
+            console.log('Number of Tasks are ' + numberOfTask);
+            // If there are task present //
+            if (numberOfTask != 0) {
+                // Fetch one task after the other until no task remain // 
+                console.log('Start fetching task ...');
+                let taskIterator = 0;
+                while (taskIterator < numberOfTask) {
+                    try {
+                        let task = await contract.methods.getTask(taskIterator).call({ from: web3.eth.defaultAccount });
+                        if (task[0] != '') {
+                            // addTaskToList add this task as children to the ul tag //
+                            addTaskToList(taskIterator, task[0], task[1]);
                         }
-                        // update the number of task //
-                        updateTasksCount();
+                        else {
+                            console.log('The index ' + taskIterator + ' is empty');
+                        }
+                    } catch {
+                        console.log('Failed to get Task ' + taskIterator);
                     }
-                } catch {
-                    console.log('Failed to get task count from blockchain');
+                    taskIterator++;
                 }
-            } else {
-                try {
-                    console.log('Create account for ' + web3.eth.defaultAccount + ' in blockchain');
-                    await contract.methods.createUser(web3.eth.defaultAccount).send({ from: web3.eth.defaultAccount });
-                } catch {
-                    console.log('Failed to create account for ' + web3.eth.defaultAccount + ' in blockchain');
-                }
+                // Update the task count in HTML //
+                updateTasksCount();
             }
         } catch {
-            console.log('Failed to detect whether user was created');
-
+            console.log('Failed to get task count from blockchain');
         }
     } catch {
         console.log('Failed to get the acount');
     }
-   
+
 }
 
+/**
+ * addTaskToList() takes the task atributes and adds them to 
+ * the HTML
+ * @author Gupta Shrinath <https://github.com/gupta-shrinath>
+ * @param {number} id 
+ * @param {string} name 
+ * @param {boolean} status 
+ */
 function addTaskToList(id, name, status) {
     console.log('addTaskToList(): Add Task ' + (id) + ' ' + [name, status]);
     /*  Get the id of ul element so to be able to 
@@ -100,51 +105,67 @@ function addTaskToList(id, name, status) {
     // Append the checkbox for task //
     item.appendChild(checkbox);
     // Add onclick to the checkbox // 
-    checkbox.onclick = function () { changeTaskStatus(checkbox.id, web3.eth.defaultAccount, id); };
+    checkbox.onclick = function () { changeTaskStatus(checkbox.id, id); };
 }
 
-async function removeTask(id) {
-    console.log("removeTask(): Remove Task " + id);
+/**
+ * removeTask() remove the task from blockchain and then from 
+ * the HTML using JQuery
+ * Note: The taskIndex is the li element id {item-taskIndex}
+ * @author Gupta Shrinath <https://github.com/gupta-shrinath>
+ * @param {string} taskIndex 
+ */
+async function removeTask(taskIndex) {
+    console.log("removeTask(): Remove Task " + taskIndex);
     // Create the selector for the Task //
-    let taskSelector = '#' + id;
-    id = id.replace('item-', '');
+    let taskSelector = '#' + taskIndex;
+    // Make taskIndex to have only task index number
+    taskIndex = taskIndex.replace('item-', '');
     try {
-        console.log('Remove Task ' + id + ' from the blockchain');
-        await contract.methods.deleteTask(web3.eth.defaultAccount, id).send({ from: web3.eth.defaultAccount });
+        await contract.methods.deleteTask(taskIndex).send({ from: web3.eth.defaultAccount });
+        console.log('Remove Task ' + taskIndex + ' from the blockchain');
+        // Remove the task from the HTML //
         $(taskSelector).remove();
+        // Update the task count in HTML//
         updateTasksCount();
     } catch {
-        console.log('Issue occured while removing task item-' + id);
+        console.log('Issue occured while removing task item-' + taskIndex);
     }
 }
 
-async function changeTaskStatus(id, account, taskIndex) {
+/**
+ * changeTaskStatus() change the status of task in blockchain and 
+ * then in the HTML
+ * Note: The id is the checkbox id {item-taskIndex-checkbox}
+ * @author Gupta Shrinath <https://github.com/gupta-shrinath>
+ * @param {string} id 
+ * @param {number} taskIndex 
+ */
+async function changeTaskStatus(id, taskIndex) {
     // Get checkbox element //
     let checkbox = document.getElementById(id);
     // Get the id of the li element //
     let textId = id.replace('-checkbox', '');
     // Get the li element //
     let text = document.getElementById(textId);
-    console.log('changeTaskStatus(): Change status of task ' + textId + ' to ' + checkbox.checked);
-    if (checkbox.checked == true) {
-        try {
-            console.log('Change Status of task ' + textId + ' in blockchain');
-            await contract.methods.updateStatus(account, taskIndex, checkbox.checked).send({ from: account });
+    try {
+        await contract.methods.updateStatus(taskIndex, checkbox.checked).send({ from: web3.eth.defaultAccount });
+        console.log('changeTaskStatus(): Change status of task ' + textId + ' to ' + checkbox.checked);
+        if (checkbox.checked) {
             text.classList.add("task-done");
-        } catch {
-            console.log('Failed to change Status of task ' + textId + ' in blockchain');
-        }
-    } else {
-        try {
-            console.log('Change Status of task ' + textId + ' in blockchain');
-            await contract.methods.updateStatus(account, taskIndex, checkbox.checked).send({ from: account });
+        } else {
             text.classList.remove("task-done");
-        } catch {
-            console.log('Failed to change Status of task ' + textId + ' in blockchain');
         }
+    } catch (error) {
+        console.log('Failed to change Status of task ' + textId + ' in blockchain');
     }
 }
 
+/**
+ * updateTaskCount() update the number of task in HTML by counting 
+ * the number of item in the ul element 
+ * @author Gupta Shrinath <https://github.com/gupta-shrinath>
+ */
 function updateTasksCount() {
     // Get the element of ul tag //
     let list = document.getElementById('list');
@@ -156,26 +177,52 @@ function updateTasksCount() {
     count.innerText = taskCount + " Task";
 }
 
-/* addTaskToList method takes the task atributes 
-   and adds them to the HTML
-   addTask method takes the task name and adds it
-   to the blockchain and HTML
-*/
+/**
+ * addTask() add the task to the HTML via adddTasktoList() and then 
+ * add it to blockchain and update the count via updateTaskCount() 
+ * @author Gupta Shrinath <https://github.com/gupta-shrinath>
+ * @param {string} name 
+ */
 async function addTask(name) {
-    // Set blank value for text in the addtask modal //
-    document.getElementById('new-task').value = '';
-    console.log('Get the number of task from blockchain');
-    contract.methods.getTaskCount(web3.eth.defaultAccount).call({ from: web3.eth.defaultAccount }).then(numberOfTask => {
-        addTaskToList(numberOfTask, name, false);
-        updateTasksCount();
-    }, err => {
-        console.log('Failed to get the number of task in blockchain ' + err);
-    });
-    try {
-        console.log('Add task to blockchain');
-        await contract.methods.addTask(web3.eth.defaultAccount, name).send({ from: web3.eth.defaultAccount });
-    } catch {
-        console.log('Failed to add task to EVM');
+    // Get the form element containing the new task //
+    let form = document.getElementById('add-task-form');
+    // Check if the input is valid and then add it//
+    if (form.checkValidity()) {
+        console.log('Get the number of task from blockchain');
+        // Set blank value for text in the addtask modal //
+        document.getElementById('new-task').value = '';
+        // Remove the mentioned class because it might be 
+        // present if a task was added before
+        form.classList.remove('was-validated');
+        // Get the number of task from blockchain // 
+        contract.methods.getTaskCount().call({ from: web3.eth.defaultAccount }).then(numberOfTask => {
+            // Add the task to the HTML //
+            addTaskToList(numberOfTask, name, false);
+            // Update the task count in HTML//
+            updateTasksCount();
+        }, err => {
+            console.log('Failed to get the number of task in blockchain ' + err);
+        });
+        try {
+            await contract.methods.addTask(name).send({ from: web3.eth.defaultAccount });
+            console.log('Add task ' + name + ' to blockchain');
+        } catch {
+            console.log('Failed to add task to EVM');
+        }
+
+    } else {
+        form.addEventListener('submit', function (event) {
+            // Stop all events //
+            event.preventDefault();
+            event.stopPropagation();
+            // Add the mentioned class to able to display
+            // error to user
+            form.classList.add('was-validated');
+            // Set blank value for text in the addtask modal //
+            document.getElementById('new-task').value = '';
+        }, false);
+
     }
+
 }
 

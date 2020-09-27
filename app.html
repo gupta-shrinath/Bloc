@@ -45,17 +45,23 @@
                 <!-- #Task List-->
 
                 <!-- Add Task Modal -->
-                <div id="add-task-container" class="modal add-task-container" data-backdrop="static">
-                    <div class="container">
-                        <div class="col mx-2">
-                            <h5 class="text-primary text-center mt-4">New Task</h5>
-                            <input id="new-task" class="mt-3" type="text">
-                            <button type="button" data-dismiss="modal" class="btn btn-primary btn-block mt-3"
-                                onclick="addTask(document.getElementById('new-task').value);">Add
-                                Task</button>
+                <div id="add-task-container" tabindex="-1" class="modal add-task-container">
+                    <form id="add-task-form" class="needs-validation" novalidate>
+                        <div class="container">
+                            <div class="col mx-2">
+                                <h5 class="text-primary text-center mt-4">New Task</h5>
+                                <input id="new-task" class="mt-3 form-control text-center" type="text"
+                                    placeholder="Task" maxlength="15" autofocus required>
+                                <div class="invalid-feedback">
+                                    Cannot have a empty task
+                                </div>
+                                <button type="submit" data-dismiss="modal" class="btn btn-primary btn-block mt-3"
+                                    onclick="addTask(document.getElementById('new-task').value);">Add
+                                    Task</button>
+                            </div>
                         </div>
-                    </div>
-                </div>
+                    </form>
+                </div> 
                 <!-- #Add Task Modal -->
 
             </div>

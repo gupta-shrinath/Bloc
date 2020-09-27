@@ -1,2 +1,2 @@
-var contractABI;
-var contractAddress;
+let contractABI;
+let contractAddress;
