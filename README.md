@@ -1,6 +1,7 @@
 # BLOC
 <p align="left">
 <img alt="Model Prototype" src="https://img.shields.io/badge/model-prototype-brightgreen?style=for-the-badge&labelColor=black&logo=github">
+<img alt="Version 1.1" src="https://img.shields.io/badge/version-1.1-brightgreen?style=for-the-badge&labelColor=black&logo=github">
 <img alt="License" src="https://img.shields.io/github/license/gupta-shrinath/Bloc?color=bright%20green&labelColor=black&logo=github&style=for-the-badge">
 </p>
 
