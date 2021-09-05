@@ -37,7 +37,7 @@ located in the left panel and name the file as bloc.sol (Make sure to sure http 
       The copied text might look like this 0xF3017acEDd45526aC6153FBBCfcA8096173D245a.
 - Download [VSCode](https://code.visualstudio.com/download) for live server extension (any other 
 server will also work)
-- Go to Extensions on the left panel search for liver server and install it.
+- Go to Extensions on the left panel search for live server and install it.
 - Open the folder containing this repo and down in the blue status bar and click on Go live.  
 
 ## Screenshots
