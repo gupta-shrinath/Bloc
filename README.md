@@ -29,6 +29,8 @@ located in the left panel and name the file as bloc.sol (Make sure to sure http 
       >let contractABI = `COPIED TEXT`;<br>
       The copied text will be enclosed in [].
     - Go to deploy and run transaction under environment select Web3 Provider. 
+    - If you get the message `Not possible to connect to the Web3 provider. Make sure the provider is running, a connection is open (via IPC or RPC) or that       the provider plugin is properly configured.` this is due to CORS policy in browsers.
+    - The solution for chrome browser is go to `chrome://flags/#block-insecure-private-network-requests` and select disabled. Relaunch the browser. Disabling       that flag does mean you're re-opening the security hole that Chrome's new behavior is meant to close.You can read more [here.](https://stackoverflow.com/questions/66534759/chrome-cors-error-on-request-to-localhost-dev-server-from-remote-site)
     - Enter the address you copied from Ganache and paste it click on OK.
     - Now a deploy button will be visible click on it. 
     - Down you'll find Deployed Contracts label now there will a copy icon button click on it   
